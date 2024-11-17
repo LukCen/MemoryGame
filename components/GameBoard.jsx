@@ -29,7 +29,7 @@ export default function GameBoard() {
       }
     }
     shuffleValues()
-    // console.log(cardArray)
+
   }
 
   const checkForVictory = () => {
@@ -43,6 +43,8 @@ export default function GameBoard() {
       console.log(`index 0 : ${selectedCards[0]?.props.content} | index 1 : ${selectedCards[1]?.props.content}`)
       if (selectedCards[0]?.props.content == selectedCards[1]?.props.content) {
         match = true
+      } else {
+        match = false
       }
       console.log(selectedCards[0]?.props.id)
       console.log(selectedCards[1]?.props.id)
@@ -53,17 +55,19 @@ export default function GameBoard() {
       const secondElem = document.getElementById(`card-${selectedCards[1]?.props.id}`)
 
       if (firstElem && secondElem) {
-        console.dir(firstElem)
-        console.dir(secondElem)
+        // console.dir(firstElem)
+        // console.dir(secondElem)
         firstElem.style.background = 'red'
+        firstElem.style.pointerEvents = 'none'
         secondElem.style.background = 'red'
-        selectedCards = []
+        secondElem.style.pointerEvents = 'none'
       }
+      selectedCards = []
     }
   }
   const addToSelected = (element) => {
     selectedCards.push(element)
-    console.log(selectedCards)
+    console.log(`selectedCards ${Array.from(selectedCards)}`)
     return selectedCards
   }
 
