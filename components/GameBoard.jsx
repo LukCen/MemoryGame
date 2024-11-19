@@ -34,6 +34,8 @@ export default function GameBoard() {
 
   const checkForVictory = () => {
     let match;
+    const firstElem = document.getElementById(`card-${selectedCards[0]?.props.id}`)
+    const secondElem = document.getElementById(`card-${selectedCards[1]?.props.id}`)
     // check if two selected
     // if two selected, check if match
     // if match, mark green
@@ -49,20 +51,24 @@ export default function GameBoard() {
       console.log(selectedCards[0]?.props.id)
       console.log(selectedCards[1]?.props.id)
       console.log(match)
-    }
-    if (match === true) {
-      const firstElem = document.getElementById(`card-${selectedCards[0]?.props.id}`)
-      const secondElem = document.getElementById(`card-${selectedCards[1]?.props.id}`)
+      if (match === true) {
 
-      if (firstElem && secondElem) {
-        // console.dir(firstElem)
-        // console.dir(secondElem)
-        firstElem.style.background = 'red'
-        firstElem.style.pointerEvents = 'none'
-        secondElem.style.background = 'red'
-        secondElem.style.pointerEvents = 'none'
+        if (firstElem && secondElem) {
+          // console.dir(firstElem)
+          // console.dir(secondElem)
+          firstElem.style.background = 'red'
+          firstElem.style.pointerEvents = 'none'
+          secondElem.style.background = 'red'
+          secondElem.style.pointerEvents = 'none'
+        }
+        selectedCards = []
+      } else {
+        if (firstElem && secondElem) {
+          firstElem.dataset.active = false;
+          secondElem.dataset.active = false;
+        }
+        selectedCards = []
       }
-      selectedCards = []
     }
   }
   const addToSelected = (element) => {
